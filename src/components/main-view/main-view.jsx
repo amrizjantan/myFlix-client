@@ -5,14 +5,16 @@ import { MovieCard } from '../movie-card/movie-card';
 import { MovieView } from '../movie-view/movie-view';
 
 export class MainView extends React.Component {
+
   constructor(){
     super();
     this.state = {
       movies: [],
       selectedMovie: null
-    }
+    };
   }
 
+// Load in movies from my database after rendering MainView
   componentDidMount(){
     axios.get('https://amrizflix.herokuapp.com/movies')
       .then(response => {
@@ -25,7 +27,7 @@ export class MainView extends React.Component {
       });
   }
 
-  
+ // Passed to MovieCard  
   setSelectedMovie(newSelectedMovie) {
     this.setState({
       selectedMovie: newSelectedMovie
@@ -34,8 +36,9 @@ export class MainView extends React.Component {
   
   render() {
     const { movies, selectedMovie } = this.state;
-  
-    if (movies.length === 0) return <div className="main-view">The list is empty!</div>;
+    
+// Empty Mainview if there are no movies (or movies are still loading)
+    if (movies.length === 0) return <div className="main-view"></div>;
   
     return (
       <div className="main-view">
@@ -48,7 +51,6 @@ export class MainView extends React.Component {
       </div>
     );
   }
-
 }
 
 export default MainView;

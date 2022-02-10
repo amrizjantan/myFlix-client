@@ -1,5 +1,5 @@
 import React from 'react';
-import axios from 'axios';
+
 
 export class MovieView extends React.Component {
   keypressCallback(event) {
@@ -14,7 +14,7 @@ export class MovieView extends React.Component {
     document.removeEventListener('keypress', this.keypressCallback);
   }
 
-  render() {
+  render() {  
     const { movie, onBackClick } = this.props;
 
     return (
