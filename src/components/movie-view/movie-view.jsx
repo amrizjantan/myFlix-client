@@ -1,6 +1,7 @@
-import React from 'react';
+import React from "react";
 import PropTypes from "prop-types";
 
+import "./movie-view.scss";
 
 export class MovieView extends React.Component {
   keypressCallback(event) {
@@ -8,19 +9,18 @@ export class MovieView extends React.Component {
   }
 
   componentDidMount() {
-    document.addEventListener('keypress', this.keypressCallback);
+    document.addEventListener("keypress", this.keypressCallback);
   }
 
   componentWillUnmount() {
-    document.removeEventListener('keypress', this.keypressCallback);
+    document.removeEventListener("keypress", this.keypressCallback);
   }
 
-  render() {  
+  render() {
     const { movie, onBackClick } = this.props;
 
     return (
       <div className="movie-view">
-
         <div className="movie-poster">
           <img src={movie.ImagePath} crossOrigin="true" />
         </div>
@@ -36,7 +36,7 @@ export class MovieView extends React.Component {
           <span className="genre">Genre: </span>
           <span className="value">{movie.Genre.Name}</span>
         </div>
-          <div className="genre-description">
+        <div className="genre-description">
           <span className="genre">Description: </span>
           <span className="value">{movie.Genre.Description}</span>
         </div>
@@ -52,8 +52,14 @@ export class MovieView extends React.Component {
           <span className="director">BirthYear: </span>
           <span className="value">{movie.Director.Birth}</span>
         </div>
-        <button onClick={() => { onBackClick(null); }}>Back</button>
-       </div>
+        <button
+          onClick={() => {
+            onBackClick(null);
+          }}
+        >
+          Back
+        </button>
+      </div>
     );
   }
 }
@@ -64,13 +70,13 @@ MovieView.propTypes = {
     Description: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired
+      Description: PropTypes.string.isRequired,
     }),
     Director: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Bio: PropTypes.string.isRequired,
       Birth: PropTypes.string.isRequired,
     }),
-    ImagePath: PropTypes.string.isRequired
+    ImagePath: PropTypes.string.isRequired,
   }).isRequired,
 };
