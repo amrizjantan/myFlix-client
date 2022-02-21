@@ -23,7 +23,7 @@ export class DirectorView extends React.Component {
               </div>
 
               <div>
-                <span className="birthyear">BirthYear: </span>
+                <span className="birthyear">birthYear: </span>
                 <span className="value">{director.Bio}</span>
               </div>
 

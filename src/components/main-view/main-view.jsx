@@ -13,6 +13,7 @@ import { MovieView } from "../movie-view/movie-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { NavbarView } from "../navbar/navbar-view";
+import { ProfileView } from "../profile-view/profile-view";
 
 import { Container, Row, Col } from "react-bootstrap";
 
