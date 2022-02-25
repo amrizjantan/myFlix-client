@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 
 export class MovieCard extends React.Component {
   render() {
-    const { movie } = this.props;
+    const { movie, onMovieClick } = this.props;
 
     return (
       <Card>
@@ -27,16 +27,11 @@ MovieCard.propTypes = {
   movie: PropTypes.shape({
     Title: PropTypes.string.isRequired,
     Description: PropTypes.string.isRequired,
+    ImagePath: PropTypes.string.isRequired,
     Genre: PropTypes.shape({
       Name: PropTypes.string.isRequired,
       Description: PropTypes.string.isRequired,
-    }),
-    Director: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Bio: PropTypes.string.isRequired,
-      Birth: PropTypes.string.isRequired,
-    }),
-    ImagePath: PropTypes.string.isRequired,
+    }).isRequired,
   }).isRequired,
   onMovieClick: PropTypes.func.isRequired,
 };
