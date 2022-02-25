@@ -36,7 +36,7 @@ export class ProfileView extends React.Component {
     window.open("/", "_self");
   }
   getUser = (token) => {
-    const Username = localStorage.getItem("user");
+    //const Username = localStorage.getItem("user");
     axios
       .get("https://amrizflix.herokuapp.com/users/${Username}", {
         headers: { Authorization: `Bearer ${token}` },
@@ -58,12 +58,12 @@ export class ProfileView extends React.Component {
   // Edit current User profile
   editUser(e) {
     e.preventDefault();
-    const username = localStorage.getItem("user");
+    //const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
     axios
       .put(
-        "https://amrizflix.herokuapp.com/users/${username}",
+        "https://amrizflix.herokuapp.com/users/${Username}",
         {
           Username: this.state.Username,
           Password: this.state.Password,
@@ -93,13 +93,14 @@ export class ProfileView extends React.Component {
   }
 
   // Delete A Favorite Movie Favorite List
-  onRemoveFavorite() {
-    const username = localStorage.getItem("user");
+  onRemoveFavorite(e) {
+    e.preventDefault();
+    //const Username = localStorage.getItem("user");
     const token = localStorage.getItem("token");
 
     axios
       .delete(
-        "https://amrizflix.herokuapp.com/users/${username}/movies/${movie._id}",
+        "https://amrizflix.herokuapp.com/users/${Username}/movies/${movie._id}",
         {
           headers: { Authorization: `Bearer ${token}` },
         }
@@ -115,10 +116,11 @@ export class ProfileView extends React.Component {
 
   // Delete A User
   onDeleteUser() {
+    //const Username = localStorage.getItem('user');
     const token = localStorage.getItem("token");
-    const username = localStorage.getItem("user");
+    //const Username = localStorage.getItem("user");
     axios
-      .delete("https://amrizflix.herokuapp.com.com/users/${username}", {
+      .delete("https://amrizflix.herokuapp.com.com/users/${Username}", {
         headers: { Authorization: `Bearer ${token}` },
       })
       .then((response) => {
@@ -133,22 +135,31 @@ export class ProfileView extends React.Component {
       });
   }
   setUsername(value) {
-    this.state.Username = value;
+    this.setState({
+      Username: value,
+    });
   }
 
   setPassword(value) {
-    this.state.Password = value;
+    this.setState({
+      Password: value,
+    });
   }
 
   setEmail(value) {
-    this.state.Email = value;
+    this.setState({
+      Email: value,
+    });
   }
 
   setBirthday(value) {
-    this.state.Birthday = value;
+    this.setState({
+      Birthday: value,
+    });
   }
+
   render() {
-    const { onBackClick, movies, user } = this.props;
+    const { onBackClick, movies } = this.props;
 
     const FavoriteMovies = movies.filter((m) => {
       return this.state.FavoriteMovies.includes(m._id);
@@ -289,10 +300,22 @@ export class ProfileView extends React.Component {
 }
 
 ProfileView.propTypes = {
-  profile: PropTypes.shape({
-    Username: PropTypes.string.isRequired,
-    Password: PropTypes.string.isRequired,
-    Email: PropTypes.string.isRequired,
-    Birthday: PropTypes.string.isRequired,
-  }),
+  movies: PropTypes.arrayOf(
+    PropTypes.shape({
+      Title: PropTypes.string.isRequired,
+      Description: PropTypes.string.isRequired,
+      ImagePath: PropTypes.string.isRequired,
+      Genre: PropTypes.shape({
+        Name: PropTypes.string.isRequired,
+        Description: PropTypes.string.isRequired,
+      }).isRequired,
+      Director: PropTypes.shape({
+        Bio: PropTypes.string.isRequired,
+        Birth: PropTypes.string.isRequired,
+        Death: PropTypes.string.isRequired,
+        Name: PropTypes.string.isRequired,
+      }).isRequired,
+    })
+  ).isRequired,
+  onBackClick: PropTypes.func.isRequired,
 };

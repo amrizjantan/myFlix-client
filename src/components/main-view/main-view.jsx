@@ -3,7 +3,6 @@ import axios from "axios";
 
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
-import PropTypes from "prop-types";
 import "./main-view.scss";
 
 import { LoginView } from "../login-view/login-view";
@@ -91,7 +90,12 @@ export class MainView extends React.Component {
                 /* If there is no user, the LoginView is rendered. If there is a user logged in, the user details are *passed as a prop to the LoginView*/
                 if (!user)
                   return (
-                    <LoginView onLoggedIn={(user) => this.onLoggedIn(user)} />
+                    <Col>
+                      {" "}
+                      <LoginView
+                        onLoggedIn={(user) => this.onLoggedIn(user)}
+                      />{" "}
+                    </Col>
                   );
                 // Empty Mainview if there are no movies (or movies are still loading)
                 if (movies.length === 0)
@@ -197,7 +201,7 @@ export class MainView extends React.Component {
                   <Col md={8}>
                     <GenreView
                       genre={movies.find(
-                        (m.Genre.Name === match.params.name).Genre
+                        (movies.Genre.Name === match.params.name).Genre
                       )}
                       onBackClick={() => history.goBack()}
                     />

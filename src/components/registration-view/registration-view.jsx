@@ -2,19 +2,17 @@ import React, { useState } from "react";
 import axios from "axios";
 import PropTypes from "prop-types";
 import "./registration-view.scss";
-import { Link, Router } from "react-router-dom";
 import {
   Card,
   CardGroup,
   Container,
   Form,
   Button,
-  Container,
   Col,
   Row,
 } from "react-bootstrap";
 
-export function RegistrationView(props) {
+export function RegistrationView() {
   const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [email, setEmail] = useState("");
@@ -169,6 +167,7 @@ RegistrationView.propTypes = {
     Username: PropTypes.string.isRequired,
     Password: PropTypes.string.isRequired,
     Email: PropTypes.string.isRequired,
+    Birthday: PropTypes.string.isRequired,
   }),
   onRegistration: PropTypes.func,
 };
