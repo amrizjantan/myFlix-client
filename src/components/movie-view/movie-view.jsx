@@ -2,6 +2,7 @@ import React from "react";
 import PropTypes from "prop-types";
 import "./movie-view.scss";
 import { Link } from "react-router-dom";
+import { Button } from "react-bootstrap";
 
 export class MovieView extends React.Component {
   keypressCallback(event) {
