@@ -15,15 +15,12 @@ import { GenreView } from "../genre-view/genre-view";
 import { NavbarView } from "../navbar/navbar-view";
 import { ProfileView } from "../profile-view/profile-view";
 
-import { Container, Row, Col } from "react-bootstrap";
-
 export class MainView extends React.Component {
   constructor() {
     super();
     // Initial state is set to null
     this.state = {
       movies: [],
-      //selectedMovie: null,
       user: null,
     };
   }
@@ -123,7 +120,7 @@ export class MainView extends React.Component {
             />
 
             <Route
-              path="/users/:username"
+              path="/profile"
               render={({ history }) => {
                 if (!user)
                   return (
