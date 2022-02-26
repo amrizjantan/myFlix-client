@@ -83,7 +83,7 @@ export class ProfileView extends React.Component {
         console.log(data);
         console.log(this.state.Username);
         alert("Profile updated");
-        window.open(`/users/${Username}`, "_self");
+        window.open("/users/${Username}", "_self");
       })
       .catch(function (error) {
         console.log(error);
@@ -138,67 +138,41 @@ export class ProfileView extends React.Component {
     this.setState({
       Username: value,
     });
-    this.Username = value;
   }
 
   setPassword(value) {
     this.setState({
       Password: value,
     });
-    this.Password = value;
   }
 
   setEmail(value) {
     this.setState({
       Email: value,
     });
-    this.Email = value;
   }
 
   setBirthday(value) {
     this.setState({
       Birthday: value,
     });
-    this.Birthday = value;
   }
 
   render() {
-    const { movies, onBackClick } = this.props;
+    // const { movies, onBackClick } = this.props;
     const { FavoriteMovies, Username, Email, Birthday } = this.state;
 
-    // if (!Username) {
-    //  return null;
-    //}
+    if (!Username) {
+      return null;
+    }
 
     return (
       <Container className="profile-view" align="center">
         <Row>
           <Col>
-            <Card className="user-profile">
-              <Card.Title>User Profile</Card.Title>
-              <Card.Text>
-                <div className="profile-container">
-                  <span className="label">Username: </span>
-                  <span className="value">{Username}</span>
-                  <br />
-                  <br />
-                  <span className="label">Email: </span>
-                  <span className="value">{Email}</span>
-                  <br />
-                  <br />
-                  <span className="label">Birthday: </span>
-                  <span className="value">{Birthday}</span>
-                </div>
-              </Card.Text>
-            </Card>
-          </Col>
-        </Row>
-        <br />
-        <Row>
-          <Col>
             <Card className="update-profile">
               <Card.Body>
-                <Card.Title>Update Profile</Card.Title>
+                <Card.Title>Profile</Card.Title>
                 <Form
                   className="update-form"
                   onSubmit={(e) =>
@@ -241,6 +215,7 @@ export class ProfileView extends React.Component {
                       type="email"
                       name="Email"
                       placeholder="Enter Email"
+                      value={Email}
                       onChange={(e) => this.setEmail(e.target.value)}
                       required
                     />
@@ -249,8 +224,9 @@ export class ProfileView extends React.Component {
                   <Form.Group>
                     <Form.Label>Birthday</Form.Label>
                     <Form.Control
+                      type="date"
                       name="Birthday"
-                      placeholder="Enter Birthday"
+                      value={Birthday}
                       onChange={(e) => this.setBirthday(e.target.value)}
                     />
                   </Form.Group>
@@ -262,7 +238,6 @@ export class ProfileView extends React.Component {
                     >
                       Update User
                     </Button>
-
                     <Button
                       className="ml-3"
                       variant="secondary"
