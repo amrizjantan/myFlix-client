@@ -1,53 +1,44 @@
 import React from "react";
-
 import PropTypes from "prop-types";
-import "./genre-view.scss";
-import { Container, Row, Col, Button } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import Button from "react-bootstrap/Button";
+import Card from "react-bootstrap/Card";
+import Row from "react-bootstrap/Row";
 
 export class GenreView extends React.Component {
   render() {
     const { genre, onBackClick } = this.props;
 
     return (
-      <Container className="genreContainer">
-        <Row>
-          <Col>
-            <div className="genre-view">
-              <div className="genre-name">
-                <span className="name">Name:</span>
-                <span className="value">{genre.Name}</span>
-              </div>
+      <Row>
+        <Card className="genre-card">
+          <Card.Title>
+            <span className="label">Name: </span>
+            <span className="value">{genre.Name}</span>
+          </Card.Title>
+          <Card.Body>
+            <span className="label">Description: </span>
+            <span className="value">{genre.Description}</span>
+          </Card.Body>
+        </Card>
 
-              <div className="genre-description">
-                <span className="description">Description:</span>
-                <span className="value">{genre.Description}</span>
-              </div>
-
-              <div className="genre-button-div">
-                <Button
-                  className="genre-button"
-                  variant="secondary"
-                  className="mt-3"
-                  onClick={() => {
-                    onBackClick(null);
-                  }}
-                >
-                  Back
-                </Button>
-              </div>
-            </div>
-          </Col>
-        </Row>
-      </Container>
+        <Button
+          variant="link"
+          onClick={() => {
+            onBackClick();
+          }}
+        >
+          Back
+        </Button>
+      </Row>
     );
   }
 }
 
 GenreView.propTypes = {
-  movie: PropTypes.shape({
-    Genre: PropTypes.shape({
-      Name: PropTypes.string.isRequired,
-      Description: PropTypes.string.isRequired,
-    }).isRequired,
-  }),
+  genre: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+  }).isRequired,
+  onBackClick: PropTypes.func.isRequired,
 };

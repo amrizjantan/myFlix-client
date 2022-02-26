@@ -23134,7 +23134,8 @@ class MainView extends _reactDefault.default.Component {
                                     return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
                                         md: 8,
                                         children: /*#__PURE__*/ _jsxRuntime.jsx(_genreView.GenreView, {
-                                            genre: movies.find((movies.Genre.Name === match.params.name).Genre),
+                                            genre: movies.find((m)=>m.Genre.Name === match.params.name
+                                            ).Genre,
                                             onBackClick: ()=>history.goBack()
                                         })
                                     }));
@@ -40638,130 +40639,109 @@ var _react = require("react");
 var _reactDefault = parcelHelpers.interopDefault(_react);
 var _propTypes = require("prop-types");
 var _propTypesDefault = parcelHelpers.interopDefault(_propTypes);
-var _genreViewScss = require("./genre-view.scss");
-var _reactBootstrap = require("react-bootstrap");
+var _reactRouterDom = require("react-router-dom");
+var _button = require("react-bootstrap/Button");
+var _buttonDefault = parcelHelpers.interopDefault(_button);
+var _card = require("react-bootstrap/Card");
+var _cardDefault = parcelHelpers.interopDefault(_card);
+var _row = require("react-bootstrap/Row");
+var _rowDefault = parcelHelpers.interopDefault(_row);
 class GenreView extends _reactDefault.default.Component {
     render() {
         const { genre , onBackClick  } = this.props;
-        return(/*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Container, {
-            className: "genreContainer",
+        return(/*#__PURE__*/ _jsxRuntime.jsxs(_rowDefault.default, {
             __source: {
                 fileName: "src/components/genre-view/genre-view.jsx",
-                lineNumber: 12
+                lineNumber: 13
             },
             __self: this,
-            children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Row, {
-                __source: {
-                    fileName: "src/components/genre-view/genre-view.jsx",
-                    lineNumber: 13
-                },
-                __self: this,
-                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Col, {
+            children: [
+                /*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default, {
+                    className: "genre-card",
                     __source: {
                         fileName: "src/components/genre-view/genre-view.jsx",
                         lineNumber: 14
                     },
                     __self: this,
-                    children: /*#__PURE__*/ _jsxRuntime.jsxs("div", {
-                        className: "genre-view",
-                        __source: {
-                            fileName: "src/components/genre-view/genre-view.jsx",
-                            lineNumber: 15
-                        },
-                        __self: this,
-                        children: [
-                            /*#__PURE__*/ _jsxRuntime.jsxs("div", {
-                                className: "genre-name",
-                                __source: {
-                                    fileName: "src/components/genre-view/genre-view.jsx",
-                                    lineNumber: 16
-                                },
-                                __self: this,
-                                children: [
-                                    /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                                        className: "name",
-                                        __source: {
-                                            fileName: "src/components/genre-view/genre-view.jsx",
-                                            lineNumber: 17
-                                        },
-                                        __self: this,
-                                        children: "Name:"
-                                    }),
-                                    /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                                        className: "value",
-                                        __source: {
-                                            fileName: "src/components/genre-view/genre-view.jsx",
-                                            lineNumber: 18
-                                        },
-                                        __self: this,
-                                        children: genre.Name
-                                    })
-                                ]
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsxs("div", {
-                                className: "genre-description",
-                                __source: {
-                                    fileName: "src/components/genre-view/genre-view.jsx",
-                                    lineNumber: 21
-                                },
-                                __self: this,
-                                children: [
-                                    /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                                        className: "description",
-                                        __source: {
-                                            fileName: "src/components/genre-view/genre-view.jsx",
-                                            lineNumber: 22
-                                        },
-                                        __self: this,
-                                        children: "Description:"
-                                    }),
-                                    /*#__PURE__*/ _jsxRuntime.jsx("span", {
-                                        className: "value",
-                                        __source: {
-                                            fileName: "src/components/genre-view/genre-view.jsx",
-                                            lineNumber: 23
-                                        },
-                                        __self: this,
-                                        children: genre.Description
-                                    })
-                                ]
-                            }),
-                            /*#__PURE__*/ _jsxRuntime.jsx("div", {
-                                className: "genre-button-div",
-                                __source: {
-                                    fileName: "src/components/genre-view/genre-view.jsx",
-                                    lineNumber: 26
-                                },
-                                __self: this,
-                                children: /*#__PURE__*/ _jsxRuntime.jsx(_reactBootstrap.Button, {
-                                    className: "genre-button",
-                                    variant: "secondary",
-                                    className: "mt-3",
-                                    onClick: ()=>{
-                                        onBackClick(null);
-                                    },
+                    children: [
+                        /*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default.Title, {
+                            __source: {
+                                fileName: "src/components/genre-view/genre-view.jsx",
+                                lineNumber: 15
+                            },
+                            __self: this,
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                                    className: "label",
                                     __source: {
                                         fileName: "src/components/genre-view/genre-view.jsx",
-                                        lineNumber: 27
+                                        lineNumber: 16
                                     },
                                     __self: this,
-                                    children: "Back"
+                                    children: "Name: "
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                                    className: "value",
+                                    __source: {
+                                        fileName: "src/components/genre-view/genre-view.jsx",
+                                        lineNumber: 17
+                                    },
+                                    __self: this,
+                                    children: genre.Name
                                 })
-                            })
-                        ]
-                    })
+                            ]
+                        }),
+                        /*#__PURE__*/ _jsxRuntime.jsxs(_cardDefault.default.Body, {
+                            __source: {
+                                fileName: "src/components/genre-view/genre-view.jsx",
+                                lineNumber: 19
+                            },
+                            __self: this,
+                            children: [
+                                /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                                    className: "label",
+                                    __source: {
+                                        fileName: "src/components/genre-view/genre-view.jsx",
+                                        lineNumber: 20
+                                    },
+                                    __self: this,
+                                    children: "Description: "
+                                }),
+                                /*#__PURE__*/ _jsxRuntime.jsx("span", {
+                                    className: "value",
+                                    __source: {
+                                        fileName: "src/components/genre-view/genre-view.jsx",
+                                        lineNumber: 21
+                                    },
+                                    __self: this,
+                                    children: genre.Description
+                                })
+                            ]
+                        })
+                    ]
+                }),
+                /*#__PURE__*/ _jsxRuntime.jsx(_buttonDefault.default, {
+                    variant: "link",
+                    onClick: ()=>{
+                        onBackClick();
+                    },
+                    __source: {
+                        fileName: "src/components/genre-view/genre-view.jsx",
+                        lineNumber: 25
+                    },
+                    __self: this,
+                    children: "Back"
                 })
-            })
+            ]
         }));
     }
 }
 GenreView.propTypes = {
-    movie: _propTypesDefault.default.shape({
-        Genre: _propTypesDefault.default.shape({
-            Name: _propTypesDefault.default.string.isRequired,
-            Description: _propTypesDefault.default.string.isRequired
-        }).isRequired
-    })
+    genre: _propTypesDefault.default.shape({
+        Name: _propTypesDefault.default.string.isRequired,
+        Description: _propTypesDefault.default.string.isRequired
+    }).isRequired,
+    onBackClick: _propTypesDefault.default.func.isRequired
 };
 
   $parcel$ReactRefreshHelpers$5f0a.postlude(module);
@@ -40769,7 +40749,7 @@ GenreView.propTypes = {
   window.$RefreshReg$ = prevRefreshReg;
   window.$RefreshSig$ = prevRefreshSig;
 }
-},{"react/jsx-runtime":"8xIwr","react":"6TuXu","prop-types":"1tgq3","./genre-view.scss":"3BqnD","react-bootstrap":"h2YVd","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J"}],"3BqnD":[function() {},{}],"fbGar":[function(require,module,exports) {
+},{"react/jsx-runtime":"8xIwr","react":"6TuXu","@parcel/transformer-js/src/esmodule-helpers.js":"JacNc","@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js":"5V79J","prop-types":"1tgq3","react-router-dom":"cpyQW","react-bootstrap/Button":"9CzHT","react-bootstrap/Card":"MoOk8","react-bootstrap/Row":"c0x1x"}],"fbGar":[function(require,module,exports) {
 var $parcel$ReactRefreshHelpers$46a7 = require("@parcel/transformer-react-refresh-wrap/lib/helpers/helpers.js");
 var prevRefreshReg = window.$RefreshReg$;
 var prevRefreshSig = window.$RefreshSig$;
