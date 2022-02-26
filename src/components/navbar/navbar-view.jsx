@@ -27,6 +27,7 @@ export function NavbarView({ user }) {
       sticky="top"
       expand="lg"
       variant="dark"
+      margin="50pixel"
     >
       <Container fluid>
         <Navbar.Brand href="/">AmrizFlix</Navbar.Brand>

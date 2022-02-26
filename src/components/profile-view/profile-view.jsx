@@ -159,8 +159,8 @@ export class ProfileView extends React.Component {
   }
 
   render() {
-    // const { movies, onBackClick } = this.props;
-    const { FavoriteMovies, Username, Email, Birthday } = this.state;
+    const { movies, onBackClick } = this.props;
+    const { FavoriteMovies, Username, Email, Birthday, Password } = this.state;
 
     if (!Username) {
       return null;
@@ -185,6 +185,9 @@ export class ProfileView extends React.Component {
                     )
                   }
                 >
+                  <Card>
+                    <Card.Body></Card.Body>
+                  </Card>
                   <Form.Group>
                     <Form.Label>Username</Form.Label>
                     <Form.Control
@@ -203,7 +206,7 @@ export class ProfileView extends React.Component {
                       type="password"
                       name="Password"
                       placeholder="New Password"
-                      value={""}
+                      value={Password}
                       onChange={(e) => this.setPassword(e.target.value)}
                       required
                     />
@@ -251,6 +254,7 @@ export class ProfileView extends React.Component {
             </Card>
           </Col>
         </Row>
+        <br></br>
         <Row style={{ marginTop: "20px" }}>
           <Col>
             <h4>{Username} Favorite Movies</h4>
@@ -300,9 +304,9 @@ export class ProfileView extends React.Component {
             </Card.Body>
           </Col>
         </Row>
+
         <div className="backButton">
           <Button
-            variant="outline-primary"
             onClick={() => {
               onBackClick(null);
             }}
