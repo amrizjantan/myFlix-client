@@ -1,46 +1,52 @@
 import React from "react";
-
+import PropTypes from "prop-types";
 import "./director-view.scss";
-import { Container, Card, Button } from "react-bootstrap";
-
+import { Row, Card } from "react-bootstrap";
+import Button from "react-bootstrap/Button";
 export class DirectorView extends React.Component {
   render() {
     const { director, onBackClick } = this.props;
 
     return (
-      <Container fluid>
+      <Row>
         <Card className="director-card">
+          <Card.Title>
+            <span className="label">Name: </span>
+            <span className="value">{director.Name}</span>
+          </Card.Title>
           <Card.Body>
-            <Card.Title>Director</Card.Title>
-            <Card.Text>
-              <span className="director-info">Name: </span>
-              <span className="value">{director.Name}</span>
-            </Card.Text>
-            <Card.Text>
-              <span className="director-info">Bio: </span>
-              <span className="value">{director.Bio}</span>
-            </Card.Text>
-            <Card.Text>
-              <span className="director-info">Birth: </span>
-              <span className="value">{director.Birth}</span>
-            </Card.Text>
-            <Card.Text>
-              <span className="director-info">Death: </span>
-              <span className="value">{director.Death}</span>
-            </Card.Text>
-
-            <Button
-              id="back-button"
-              variant="outline-light"
-              onClick={() => {
-                onBackClick();
-              }}
-            >
-              Back
-            </Button>
+            <span className="label">Bio: </span>
+            <span className="value">{director.Bio}</span>
+          </Card.Body>
+          <Card.Body>
+            <span className="label">Birth: </span>
+            <span className="value">{director.Birth}</span>
+          </Card.Body>
+          <Card.Body>
+            <span className="label">Death: </span>
+            <span className="value">{director.Death}</span>
           </Card.Body>
         </Card>
-      </Container>
+
+        <Button
+          variant="link"
+          onClick={() => {
+            onBackClick();
+          }}
+        >
+          Back
+        </Button>
+      </Row>
     );
   }
 }
+
+DirectorView.propTypes = {
+  genre: PropTypes.shape({
+    Name: PropTypes.string.isRequired,
+    Description: PropTypes.string.isRequired,
+    Birth: PropTypes.string.isRequired,
+    Death: PropTypes.string.isRequired,
+  }).isRequired,
+  onBackClick: PropTypes.func.isRequired,
+};
