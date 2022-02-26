@@ -4,6 +4,7 @@ import axios from "axios";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 
 import "./main-view.scss";
+import { Container, Row, Col } from "react-bootstrap";
 
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
@@ -102,7 +103,7 @@ export class MainView extends React.Component {
                   return <div className="main-view"></div>;
 
                 return movies.map((m) => (
-                  <Col md={3} key={m._id}>
+                  <Col md={4} key={m._id}>
                     <MovieCard movie={m} />
                   </Col>
                 ));
