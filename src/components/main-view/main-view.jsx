@@ -1,26 +1,31 @@
 import React from "react";
 import axios from "axios";
 
+import { connect } from "react-redux";
 import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+
+import { setMovies } from "../../actions/actions";
+import MoviesList from "../movies-list/movies-list";
 
 import "./main-view.scss";
 import { Container, Row, Col } from "react-bootstrap";
 
 import { LoginView } from "../login-view/login-view";
 import { RegistrationView } from "../registration-view/registration-view";
-import { MovieCard } from "../movie-card/movie-card";
+//import { MovieCard } from "../movie-card/movie-card";
 import { MovieView } from "../movie-view/movie-view";
 import { DirectorView } from "../director-view/director-view";
 import { GenreView } from "../genre-view/genre-view";
 import { NavbarView } from "../navbar/navbar-view";
 import { ProfileView } from "../profile-view/profile-view";
 
-export class MainView extends React.Component {
+//export
+class MainView extends React.Component {
   constructor() {
     super();
     // Initial state is set to null
     this.state = {
-      movies: [],
+      //movies: [],
       user: null,
     };
   }
@@ -42,9 +47,9 @@ export class MainView extends React.Component {
       })
       .then((response) => {
         // Assign the result to the state
-        this.setState({
-          movies: response.data,
-        });
+        //this.setState({
+        //movies: response.data,
+        this.props.setMovies(response.data);
       })
       .catch(function (error) {
         console.log(error);
@@ -71,7 +76,8 @@ export class MainView extends React.Component {
   }
 
   render() {
-    const { movies, user } = this.state;
+    const { movies } = this.props;
+    const { user } = this.state;
     //with no user logged in LoginView will show if one is logged in the user parameters are passed as prop to LoginView
 
     /*If the state of `selectedMovie` is not null, that selected movie will be returned otherwise, all *movies will be returned*/
@@ -81,6 +87,7 @@ export class MainView extends React.Component {
 
         <Container>
           <Row className="main-view justify-content-md-center">
+            {/* login page / main movies page */}
             <Route
               exact
               path="/"
@@ -99,15 +106,13 @@ export class MainView extends React.Component {
                 if (movies.length === 0)
                   return <div className="main-view"></div>;
 
-                return movies.map((m) => (
-                  <Col md={4} key={m._id}>
-                    <MovieCard movie={m} />
-                  </Col>
-                ));
+                return <MoviesList movies={movies} />;
               }}
             />
 
+            {/* register page */}
             <Route
+              exact
               path="/register"
               render={() => {
                 if (user) return <Redirect to="/" />;
@@ -119,6 +124,7 @@ export class MainView extends React.Component {
               }}
             />
 
+            {/* profile page */}
             <Route
               path="/profile"
               render={({ history }) => {
@@ -133,13 +139,15 @@ export class MainView extends React.Component {
                 return (
                   <ProfileView
                     movies={movies}
-                    user={user}
+                    setUser={(user) => this.setUser(user)}
+                    onLoggedOut={() => this.onLoggedOut()}
                     onBackClick={() => history.goBack()}
                   />
                 );
               }}
             />
 
+            {/* movie page */}
             <Route
               path="/movies/:movieId"
               render={({ history, match }) => {
@@ -160,6 +168,8 @@ export class MainView extends React.Component {
                 );
               }}
             />
+
+            {/* director page */}
             <Route
               path="/directors/:name"
               render={({ match, history }) => {
@@ -184,6 +194,8 @@ export class MainView extends React.Component {
                 );
               }}
             />
+
+            {/* genre page */}
             <Route
               path="/genres/:name"
               render={({ match, history }) => {
@@ -215,4 +227,10 @@ export class MainView extends React.Component {
   }
 }
 
-export default MainView;
+let mapStateToProps = (state) => {
+  return { movies: state.movies };
+};
+
+export default connect(mapStateToProps, { setMovies })(MainView);
+
+//export default MainView;
