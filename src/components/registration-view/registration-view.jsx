@@ -58,7 +58,7 @@ export function RegistrationView() {
     const isReq = validate();
     if (isReq) {
       /* Send request to the server for authentication */
-      //  console.log(username, password);
+
       axios
         .post("https://amrizflix.herokuapp.com/users", {
           Username: username,
@@ -69,7 +69,7 @@ export function RegistrationView() {
         .then((response) => {
           const data = response.data;
           console.log(data);
-          // props.onRegistered(data);
+
           alert("Registration successful, please Login");
           window.open("/", "_self"); // opens in current tab
         })
@@ -79,13 +79,6 @@ export function RegistrationView() {
         });
     }
   };
-
-  // Modify state of MainView to be registered and logged in with new user
-  //  const handleSubmit = (e) => {
-  //   e.preventDefault();
-  //   console.log(username, password, email, birthday);
-  //   props.onRegistration(username);
-  //};
 
   return (
     <Container>
